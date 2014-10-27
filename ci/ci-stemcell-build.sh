@@ -9,6 +9,8 @@ trap cleanup EXIT
 
 rm -rf output
 
+chruby 2.0.0
+
 fetch_latest_bosh
 
 (
