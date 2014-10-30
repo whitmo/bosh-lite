@@ -1,6 +1,8 @@
 #!/bin/bash
 
 main() {
+  chruby 2.1.2
+
   gem install bundler
 
   # prerequisites for running bundle on bosh
