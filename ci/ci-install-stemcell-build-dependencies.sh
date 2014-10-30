@@ -12,8 +12,9 @@ main() {
   sudo apt-get install -y libmysqlclient-dev
 
   # prerequisites for vagrant
-  wget https://opscode-omnibus-packages.s3.amazonaws.com/mac_os_x/10.8/x86_64/chefdk-0.3.2-1.dmg
-  dpkg -i chefdk-0.3.2-1.dmg
+  wget http://opscode-omnibus-packages.s3.amazonaws.com/ubuntu/12.04/x86_64/chefdk_0.3.2-1_amd64.deb
+
+  dpkg -i chefdk_0.3.2-1_amd64.deb
 }
 
 main
