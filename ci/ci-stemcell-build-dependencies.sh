@@ -17,6 +17,13 @@ install_vagrant_prerequisites() {
   fi
 }
 
+install_vagrant_plugins() {
+  vagrant plugin install vagrant-vmware-fusion
+  vagrant plugin install vagrant-aws
+  vagrant plugin install vagrant-berkshelf
+  vagrant plugin install vagrant-omnibus
+}
+
 get_bosh_stemcell_key() {
   new_key_path=$HOME/.ssh/id_rsa_bosh
   echo "-----BEGIN RSA PRIVATE KEY-----" > $new_key_path
@@ -31,6 +38,7 @@ main() {
   gem install bundler
 
   install_vagrant_prerequisites
+  install_vagrant_plugins
   get_bosh_stemcell_key
 }
 
