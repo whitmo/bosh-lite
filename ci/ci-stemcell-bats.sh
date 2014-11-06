@@ -13,6 +13,10 @@ rm -rf output
 
 ./bin/add-route || true
 
+#download bosh stemcell
+STEMCELL="bosh-stemcell-$BOSH_LITE_CANDIDATE_BUILD_NUMBER-warden-boshlite-$STEMCELL_OS_NAME-go_agent.tgz"
+wget https://bosh-jenkins-artifacts.s3.amazonaws.com/bosh-stemcell/warden/$STEMCELL
+
 export BAT_STEMCELL=$(pwd)/bosh-stemcell-$BOSH_LITE_CANDIDATE_BUILD_NUMBER-warden-boshlite-$STEMCELL_OS_NAME-go_agent.tgz
 run_bats_against 192.168.50.4 $STEMCELL_OS_NAME
 
