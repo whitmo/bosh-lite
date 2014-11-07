@@ -12,7 +12,7 @@ env | sort
 
 cleanup() {
   cd $CUD
-  nofail vagrant destroy -f
+  #nofail vagrant destroy -f
 
   # Reset any changes made for this test
   git checkout .
