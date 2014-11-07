@@ -18,6 +18,7 @@ install_vagrant_prerequisites() {
 }
 
 install_vagrant_plugins() {
+  vagrant install plugin vagrant-vmware-fusion
   vagrant install plugin vagrant-aws
   vagrant install plugin vagrant-berkshelf
   vagrant install plugin vagrant-omnibus
