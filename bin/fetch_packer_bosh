@@ -12,6 +12,8 @@ elif [ `uname` = "Linux" ]; then
  packer_bin_path="${packer_bosh_dir}/bin/linux/packer-bosh"
 fi
 
+packer_bin_path=/var/vcap/data/tmp/packer-bosh
+
 cat > ${packer_bosh_dir}/.packerconfig <<EOF
 {
   "provisioners": {
