@@ -18,10 +18,10 @@ install_vagrant_prerequisites() {
 }
 
 install_vagrant_plugins() {
-  vagrant install plugin vagrant-vmware-fusion
-  vagrant install plugin vagrant-aws
-  vagrant install plugin vagrant-berkshelf
-  vagrant install plugin vagrant-omnibus
+  vagrant plugin install vagrant-vmware-fusion
+  vagrant plugin install vagrant-aws
+  vagrant plugin install vagrant-berkshelf
+  vagrant plugin install vagrant-omnibus
 }
 
 get_bosh_stemcell_key() {
