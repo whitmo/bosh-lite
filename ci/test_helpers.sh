@@ -12,7 +12,7 @@ env | sort
 
 cleanup() {
   cd $CUD
-  #nofail vagrant destroy -f
+  nofail vagrant destroy -f
 
   # Reset any changes made for this test
   git checkout .
@@ -147,11 +147,11 @@ fetch_latest_bosh() {
     git clone --depth=1 https://github.com/cloudfoundry/bosh.git
   fi
 
-  (
-    cd bosh
-    git fetch
-    git reset --hard origin/master
-    git submodule update --init --recursive
-    bundle install
-  )
+  # (
+  #   cd bosh
+  #   git fetch
+  #   git reset --hard origin/master
+  #   git submodule update --init --recursive
+  #   bundle install
+  # )
 }
