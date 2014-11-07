@@ -18,10 +18,17 @@ install_vagrant_prerequisites() {
 }
 
 install_vagrant_plugins() {
-  vagrant plugin install vagrant-vmware-fusion
-  vagrant plugin install vagrant-aws
-  vagrant plugin install vagrant-berkshelf
-  vagrant plugin install vagrant-omnibus
+  installed_plugins=`vagrant plugin list`
+
+  for plugin in "vagrant-vmware-fusion" "vagrant-aws" "vagrant-berkshelf" "vagrant-omnibus"; do
+    echo $installed_plugins | grep $plugin > /dev/null
+
+    if [ $? = 1 ]; then
+      vagrant plugin install $plugin
+    else
+      echo "$plugin is already installed"
+    fi
+  done
 }
 
 get_bosh_stemcell_key() {
