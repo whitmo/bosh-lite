@@ -129,11 +129,6 @@ run_bats_on_vm() {
   vagrant ssh -c "$(declare -f fetch_latest_bosh); $(declare -f nofail); $(declare -f run_bats); run_bats 127.0.0.1 $stemcell_os_name"
 }
 
-publish_vagrant_box() {
-  box_type=$1
-  candidate_build_number=$2
-  s3cmd put -P bosh-lite-$box_type-ubuntu-trusty-$candidate_build_number.box s3://bosh-lite-build-artifacts/
-}
 
 nofail() {
   set +e
