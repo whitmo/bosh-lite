@@ -11,4 +11,5 @@ PACKER_LOG=1
 ami=`tail -2 output | grep -Po "ami-.*"`
 
 sleep 60
-ec2-modify-image-attribute $ami  --launch-permission -a all --aws-access-key $AWS_ACCESS_KEY_ID --aws-secret-key $AWS_SECRET_ACCESS_KEY
+aws ec2 modify-image-attribute --image-id $ami -5731123e --launch-permission "{\"Add\": [{\"Group\":\"all\"}]}"
+upload_box aws $BOSH_LITE_CANDIDATE_BUILD_NUMBER
