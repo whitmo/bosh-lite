@@ -75,6 +75,11 @@ install_s3cmd() {
   fi
 }
 
+install_aws_cli() {
+  sudo apt-get install -y pip
+  sudo pip install awscli
+}
+
 get_bosh_stemcell_key() {
   new_key_path=$HOME/.ssh/id_rsa_bosh
   echo "-----BEGIN RSA PRIVATE KEY-----" > $new_key_path
