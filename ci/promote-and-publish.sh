@@ -28,6 +28,14 @@ publish_to_s3(){
   done
 }
 
+promote_box(){
+  box_type=$1
+  candidate_build_number=$2
+  box_name="bosh-lite-${box_type}-ubuntu-trusty-${candidate_build_number}.box"
+
+  s3cmd --access_key=$BOSH_AWS_ACCESS_KEY_ID --secret_key=$BOSH_AWS_SECRET_ACCESS_KEY mv s3://bosh-lite-ci-pipeline/$box_name s3://bosh-lite-boxes/$box_name
+}
+
 publish_to_vagrant_cloud(){
   version_id=`create_vagrant_cloud_version`
 
