@@ -54,9 +54,31 @@ install_vagrant_plugins() {
   done
 }
 
+install_s3cmd() {
+  set -x
+  sudo apt-get install -y python-dateutil
+  s3cmd --version 2> /dev/null
+
+  if [ $? -ne 0 ]; then
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8BAF9A6F
+    sudo apt-get update
+    sudo apt-get install -y python2.4-setuptools
+
+    wget https://github.com/s3tools/s3cmd/archive/v1.5.0-rc1.tar.gz
+    tar xvf v1.5.0-rc1.tar.gz
+
+    pushd s3cmd-1.5.0-rc1
+    sudo python setup.py install
+    popd
+
+    ln -s /usr/local/bin/s3cmd /usr/bin/s3cmd
+  fi
+}
+
 get_bosh_stemcell_key() {
   new_key_path=$HOME/.ssh/id_rsa_bosh
   echo "-----BEGIN RSA PRIVATE KEY-----" > $new_key_path
   echo $ID_RSA_BOSH | sed 's/\s\+/\n/g' >> $new_key_path
   echo "-----END RSA PRIVATE KEY-----" >> $new_key_path
 }
+
