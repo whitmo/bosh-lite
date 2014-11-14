@@ -55,7 +55,7 @@ install_vagrant_plugins() {
 }
 
 install_s3cmd() {
-  s3cmd --version
+  s3cmd --version 2> /dev/null
 
   if [ $? -ne 0 ]; then
     sudo apt-get install -y python2.4-setuptools
@@ -64,7 +64,7 @@ install_s3cmd() {
     tar xf v1.5.0-rc1.tar.gz
 
     (
-      cd v1.5.0-rc1
+      cd s3cmd-v1.5.0-rc1
       sudo python setup.py install
     )
   fi
