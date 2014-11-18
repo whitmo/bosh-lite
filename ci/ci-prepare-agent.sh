@@ -10,6 +10,7 @@ main() {
   install_vagrant_prerequisites
   install_vagrant_plugins
   install_s3cmd
+  install_aws_cli
 
   get_bosh_stemcell_key
 }
