@@ -75,8 +75,13 @@ install_s3cmd() {
 }
 
 install_aws_cli() {
-  sudo apt-get install -y pip
-  sudo pip install awscli
+  aws --version > /dev/null
+
+  if [ $? -ne 0 ]; then
+    sudo apt-get install -y python-pip
+    sudo pip install awscli
+    ln -s /usr/local/bin/aws /usr/bin/aws
+  fi
 }
 
 get_bosh_stemcell_key() {
