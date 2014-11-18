@@ -76,13 +76,8 @@ install_s3cmd() {
 }
 
 install_aws_cli() {
-  install_pip
+  sudo apt-get install -y pip
   sudo pip install awscli
-}
-
-install_pip() {
-  wget https://bootstrap.pypa.io/get-pip.py
-  sudo python get-pip.py
 }
 
 get_bosh_stemcell_key() {
