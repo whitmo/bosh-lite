@@ -23,7 +23,6 @@ set_virtualbox_machine_folder() {
 }
 
 install_bundle() {
-  sudo apt-get update
   sudo apt-get install -y postgresql-server-dev-9.3
   sudo apt-get install -y libsqlite3-dev
   sudo apt-get install -y libmysqlclient-dev
