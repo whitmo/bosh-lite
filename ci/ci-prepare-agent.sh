@@ -4,6 +4,7 @@ source $(dirname $0)/ci_helpers.sh
 
 main() {
   chruby 2.1.2
+  sudo apt-get update
 
   install_bundle
 
