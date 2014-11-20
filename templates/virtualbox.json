@@ -11,6 +11,7 @@
 
     "guest_os_type": "Ubuntu_64",
     "guest_additions_path": "/home/vagrant/VBoxGuestAdditions.iso",
+    "guest_additions_url":"http://download.virtualbox.org/virtualbox/4.3.18/VBoxGuestAdditions_4.3.18.iso",
     "virtualbox_version_file": ".vbox_version",
 
     "headless": "true",
