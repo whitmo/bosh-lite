@@ -19,5 +19,5 @@ fetch_latest_bosh
 
 (
   cd bosh
-  bundle exec rake ci:publish_stemcell_in_vm[warden,boshlite,$OS_NAME,$OS_VERSION,remote,go,bosh-os-images,bosh-$OS_NAME-$OS_VERSION-os-image.tgz]
+  bundle exec rake ci:publish_stemcell_in_vm[warden,boshlite,$OS_NAME,$OS_VERSION,remote,go,bosh-os-images,bosh-$OS_NAME-$OS_VERSION-os-image.tgz,bosh-lite-ci-pipeline]
 )
