@@ -3,6 +3,7 @@ set -ex
 
 export STEMCELL_BUILD_NUMBER=${BOSH_LITE_CANDIDATE_BUILD_NUMBER}
 export TMPDIR="/var/vcap/data/tmp"
+vagrant -v
 
 source $(dirname $0)/test_helpers.sh
 
