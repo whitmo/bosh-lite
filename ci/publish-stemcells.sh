@@ -1,26 +1,25 @@
 #!/usr/bin/env bash
 set -ex
-source $(dirname $0)/ci_helpers.sh
-sudo apt-get update
-install_s3cmd
 
 env | sort
 
+s3_cmd_cp() {
+  s3cmd --access_key=$BOSH_AWS_ACCESS_KEY_ID --secret_key=$BOSH_AWS_SECRET_ACCESS_KEY --mime-type=application/x-gtar --no-preserve -P cp $1 $2
+}
 
+main() {
+  BUCKET="s3://bosh-lite-ci-pipeline/$BOSH_LITE_CANDIDATE_BUILD_NUMBER/bosh-stemcell/warden"
 
-for os in "ubuntu-trusty" "centos"; do
-  STEMCELL="bosh-stemcell-${BOSH_LITE_CANDIDATE_BUILD_NUMBER}-warden-boshlite-${os}-go_agent.tgz"
-  BUCKET="s3://bosh-lite-ci-pipeline/"
+  for os in "ubuntu-trusty" "centos"; do
+    STEMCELL="bosh-stemcell-${BOSH_LITE_CANDIDATE_BUILD_NUMBER}-warden-boshlite-${os}-go_agent.tgz"
+    s3_cmd_cp $BUCKET/$STEMCELL s3://bosh-lite-build-artifacts/
+    s3_cmd_cp $BUCKET/$STEMCELL s3://bosh-lite-build-artifacts/latest-bosh-stemcell-warden-$os-go_agent.tgz
+  done
 
-  #Download stemcell from bucket
-  rm -f bosh-stemcell*
-  wget "https://bosh-lite-ci-pipeline.s3.amazonaws.com/${BOSH_LITE_CANDIDATE_BUILD_NUMBER}/bosh-stemcell/warden/${STEMCELL}"
+  # trusty is the default ubuntu stemcell
+  STEMCELL="bosh-stemcell-${BOSH_LITE_CANDIDATE_BUILD_NUMBER}-warden-boshlite-ubuntu-go_agent.tgz"
+  s3_cmd_cp $BUCKET/$STEMCELL s3://bosh-lite-build-artifacts/latest-bosh-stemcell-warden-ubuntu.tgz
+  s3_cmd_cp $BUCKET/$STEMCELL s3://bosh-lite-build-artifacts/latest-bosh-stemcell-warden.tgz
+}
 
-  #Upload to publish bucket
-  upload_file $STEMCELL $BUCKET "--mime-type=application/x-gtar --no-preserve -P"
-  upload_file $STEMCELL $BUCKET/latest-bosh-stemcell-warden-$os-go_agent.tgz "--mime-type=application/x-gtar --no-preserve -P"
-done
-
-# trusty is the default ubuntu stemcell
-#s3cmd put -P ./bosh-stemcell-$BOSH_LITE_CANDIDATE_BUILD_NUMBER-warden-boshlite-ubuntu-trusty-go_agent.tgz s3://bosh-lite-ci-pipeline/latest-bosh-stemcell-warden-ubuntu.tgz
-#s3cmd put -P ./bosh-stemcell-$BOSH_LITE_CANDIDATE_BUILD_NUMBER-warden-boshlite-ubuntu-trusty-go_agent.tgz s3://bosh-lite-ci-pipeline/latest-bosh-stemcell-warden.tgz
+main

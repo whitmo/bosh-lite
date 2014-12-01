@@ -18,13 +18,6 @@ upload_box() {
   s3cmd --access_key=$BOSH_AWS_ACCESS_KEY_ID --secret_key=$BOSH_AWS_SECRET_ACCESS_KEY put $box_name $bucket_url
 }
 
-upload_file() {
-  file_path=$1
-  bucket_url=$2
-  args=$3
-  s3cmd --access_key=$BOSH_AWS_ACCESS_KEY_ID --secret_key=$BOSH_AWS_SECRET_ACCESS_KEY $args put $file_path $bucket_url
-}
-
 set_virtualbox_machine_folder() {
   VBoxManage setproperty machinefolder /var/vcap/data/vbox_machines
 }
