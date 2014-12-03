@@ -39,7 +39,7 @@ publish_to_vagrant_cloud(){
     upload_box_to_vagrant_cloud $provider "vmware" $version_id
   done
 
-  curl https://vagrantcloud.com/api/v1/box/cloudfoundry/bosh-lite/version/${version_id}/release -X PUT -d access_token="$VAGRANT_CLOUD_ACCESS_TOKEN"  
+  #curl https://vagrantcloud.com/api/v1/box/cloudfoundry/bosh-lite/version/${version_id}/release -X PUT -d access_token="$VAGRANT_CLOUD_ACCESS_TOKEN"
 }
 
 update_vagrant_file() {
